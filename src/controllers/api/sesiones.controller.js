@@ -1,5 +1,5 @@
-import { usuariosManager } from '../dao/user.manager.js'
-import { criptografiador } from '../utils/criptografia.js'
+import { usuariosManager } from '../../dao/user.manager.js'
+import { criptografiador } from '../../utils/criptografia.js'
 
 export async function postSesionesController(req, res, next) {
     const credenciales = req.body

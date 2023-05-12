@@ -26,7 +26,7 @@ if (formRegister instanceof HTMLFormElement) {
         password: input_password.value,
       }
 
-      const usuarioCreado = await fetch('api/usuarios', {
+      const usuarioCreado = await fetch('/api/usuarios', {
         method: 'POST',
             body: JSON.stringify(datosUsuario),
             headers: {

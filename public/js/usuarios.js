@@ -4,7 +4,7 @@ const armarListadoUsuarios = Handlebars.compile(`
 {{#if hayUsuarios}}
 <ul>
     {{#each usuarios}}
-    <li>Nombre: {{this.nombre}} | email: {{this.email}}</li>
+    <li>Nombre: {{this.first_name}} |Apellido: {{this.last_name}} |Edad: {{this.age}} |Email: {{this.email}}</li>
     {{/each}}
 </ul>
 {{else}}

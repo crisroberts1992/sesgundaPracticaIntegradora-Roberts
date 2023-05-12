@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from '../config/session.config.js'
+import { SESSION_SECRET } from '../config/session.config.js'
 
 class Criptografia {
   hashear(dato) {
@@ -12,12 +12,12 @@ class Criptografia {
   }
 
   generarToken(dato) {
-    return jwt.sign(dato, JWT_SECRET, { expiresIn: '1h' })
+    return jwt.sign(dato, SESSION_SECRET, { expiresIn: '1h' })
   }
 
   decodificarToken(token) {
     try {
-      return jwt.verify(token, JWT_SECRET)
+      return jwt.verify(token, SESSION_SECRET)
     } catch (error) {
       throw new Error('error de autenticacion: sesión expirada')
     }

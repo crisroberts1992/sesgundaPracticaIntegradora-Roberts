@@ -1,2 +1,2 @@
-export const JWT_SECRET = 'SESSION_SECRET'
+export const SESSION_SECRET = 'SESSION_SECRET'
 export const COOKIE_SECRET = 'C00K13_S3CR3T'

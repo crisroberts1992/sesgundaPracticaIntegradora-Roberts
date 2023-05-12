@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { usersSchema } from './models/users.schema'
+import { usersSchema } from './models/users.schema.js'
 
 const usuariosModel = mongoose.model('usuarios', usersSchema)
 

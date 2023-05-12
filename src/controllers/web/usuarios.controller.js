@@ -1,4 +1,4 @@
-import { usuariosManager } from '../dao/user.manager.js'
+import { usuariosManager } from '../../dao/user.manager.js'
 
 export async function usuariosView  (req, res, next)  {
     try {

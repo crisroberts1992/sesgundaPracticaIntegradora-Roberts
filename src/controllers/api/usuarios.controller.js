@@ -1,6 +1,6 @@
-import { User } from '../entidades/user.js'
-import { usuariosManager } from '../dao/user.manager.js'
-import { criptografiador } from '../utils/criptografia.js'
+import { User } from '../../entidades/user.js'
+import { usuariosManager } from '../../dao/user.manager.js'
+import { criptografiador } from '../../utils/criptografia.js'
 
 export async function postUsuariosController(req, res, next) {
     const datosUsuario = req.body

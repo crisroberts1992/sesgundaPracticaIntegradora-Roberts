@@ -13,13 +13,13 @@ import { viewsRouter } from "../routers/router.views.js";
 import { PORT } from "../config/config.server.js";
 
 //mid
-import { errorFn } from "../mid/error.js";
+//import { errorFn } from "../mid/error.js";
 import { socketFn } from "../mid/socketio.productrt.js";
 //DDBB
 import { conectar } from "../database/mongoose.js";
 
 import cookieParser from 'cookie-parser'
-import { COOKIE_SECRET } from '../config/auth.config.js'
+import { COOKIE_SECRET } from '../config/session.config.js'
 
 
 const app = express();
@@ -40,7 +40,7 @@ app.set("view engine", "handlebars");
 
 app.use("/api", apiRouter);
 app.use("/", viewsRouter);
-app.use(errorFn);
+//app.use(errorFn);
 
 const httpServer = app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
