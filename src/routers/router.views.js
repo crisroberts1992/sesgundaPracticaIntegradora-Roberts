@@ -5,22 +5,22 @@ import {
   PATH_NEW_PRODUCT,
   PATH_PRODUCT,
   PATH_CARTS,
+  PATH_PROFILE
 } from "../config/config.viewsPath.js";
 import { cmg } from "../dao/cart.manager.mg.js";
 import { registroView } from '../controllers/web/registro.controller.js'
 import { soloAutenticados, extraerCredenciales } from '../mid/autenticacionWeb.js'
-import { profileView } from '../controllers/web/perfil.controller.js'
 import { loginView } from '../controllers/web/login.controller.js'
 import { usuariosView } from '../controllers/web/usuarios.controller.js'
 
 
 export const viewsRouter = Router();
 
-viewsRouter.get("/", (req, res, next) => {
-  res.redirect("/home");
+viewsRouter.get('/', (req, res, next) => {
+  res.redirect('/home');
 });
 
-viewsRouter.get("/home",extraerCredenciales, soloAutenticados, async (req, res, next) => {
+viewsRouter.get('/home',extraerCredenciales, soloAutenticados, async (req, res, next) => {
   try {
     const productList = await pmg.getProducts();
 
@@ -35,7 +35,7 @@ viewsRouter.get("/home",extraerCredenciales, soloAutenticados, async (req, res, 
   }
 });
 
-viewsRouter.get("/newproducts",extraerCredenciales, soloAutenticados, async (req, res, next) => {
+viewsRouter.get('/newproducts',extraerCredenciales, soloAutenticados, async (req, res, next) => {
   try {
     res.render(PATH_NEW_PRODUCT, {
       faviconTitle: "Agregar productos",
@@ -49,7 +49,7 @@ viewsRouter.get("/newproducts",extraerCredenciales, soloAutenticados, async (req
 
 //vistas de productos paginado
 
-viewsRouter.get("/products", extraerCredenciales, soloAutenticados, async (req, res) => {
+viewsRouter.get('/products', extraerCredenciales, soloAutenticados, async (req, res) => {
   const urlsrt = `http://localhost:8080${req.originalUrl}`;
   const products = await pmg.getPagProducts(req.query, urlsrt);
   res.render(PATH_PRODUCT, {
@@ -61,7 +61,7 @@ viewsRouter.get("/products", extraerCredenciales, soloAutenticados, async (req, 
 });
 
 //vista de carritos
-viewsRouter.get("/carts/:cid",extraerCredenciales, soloAutenticados, async (req, res) => {
+viewsRouter.get('/carts/:cid',extraerCredenciales, soloAutenticados, async (req, res) => {
   const products = await cmg.getProductsInCartById(req.params.cid);
   res.render(PATH_CARTS, {
     faviconTitle: "Cart",
@@ -72,10 +72,19 @@ viewsRouter.get("/carts/:cid",extraerCredenciales, soloAutenticados, async (req,
   });
 });
 //vistas de registro de usuarios
-viewsRouter.get('/login', loginView)
-viewsRouter.get('/register', registroView)
-viewsRouter.get('/profile', soloAutenticados,extraerCredenciales, profileView)
-viewsRouter.get('/users', usuariosView)
+viewsRouter.get('/login', loginView);
+viewsRouter.get('/register', registroView);
+viewsRouter.get('/profile', extraerCredenciales, soloAutenticados, async (req, res, next) => {
+  try {
+    res.render(PATH_PROFILE, {
+      faviconTitle: "Perfil",
+      Head: "Profile",
+    });
+  } catch (error) {
+    return next(error.message);
+  }
+});
+viewsRouter.get('/users',extraerCredenciales, soloAutenticados, usuariosView)
 viewsRouter.use((error, req, res, next) => {
   if (error.message === 'AUTHORIZATION ERROR') {
       return res.send('No tenes permiso para acceder a este recurso. Intenta <a href="/login">loguearte</a> con un usuario con los permisos adecuados.')

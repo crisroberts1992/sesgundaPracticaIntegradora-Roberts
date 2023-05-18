@@ -1,13 +1,17 @@
+<div id="navbar"></div>
+
+<div id="listadoPerfil"> </div>
+
 <h2>Datos usuario</h2>
-<p>Nombre completo: {{user.name}}</p>
-<p>Correo electronico: {{user.email}}</p>
-<p>Edad: {{user.age}}</p>
+<p>Nombre completo: {{this.user.first_name}}</p>
+<p>Correo electronico: {{this.users.email}}</p>
+<p>Edad: {{this.user.age}}</p>
+
 <form id="formLogout">
   <button type="submit">Logout</button>
 </form>
 
 
 
-
-
-<script src="/js/profile.js"></script>
+<script src="/js/index.js" ></script>
+<script src="/js/navbar.js"></script>

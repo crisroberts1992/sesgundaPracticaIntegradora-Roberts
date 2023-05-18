@@ -27,8 +27,8 @@ const app = express();
 await conectar();
 
 app.use(cors({ origin: "*" }));
-app.use("/public", express.static("public"));
-app.use(express.json())
+app.use(express.static("./public"));
+app.use(express.json());
 
 app.use(cookieParser(COOKIE_SECRET))
 
@@ -62,3 +62,8 @@ io.on("connection", async (clientSocket) => {
   console.log(`New connection: ${clientSocket.id}`);
   await socketFn();
 });
+
+//app.use((req, res, next) => {
+  //req['io'] = io
+ // next()
+//})

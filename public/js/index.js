@@ -1,22 +1,24 @@
 const serverSocket = io("http://localhost:8080");
 //boton logout
-const logoutForm = document.getElementById('logoutForm')
+
+const logoutForm = document.querySelector('#formLogout')
 
 if (logoutForm instanceof HTMLFormElement) {
-    logoutForm.addEventListener('submit', e => {
-        e.preventDefault()
-        fetch('/api/sessions/logout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(result => {
-                if (result.status === 200) {
-                    window.location.replace('/')
-                }
-            })
-    })
+  logoutForm.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch('/api/sessions', {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+          .then(result => {
+              if (result.status === 204) {
+                console.log('logout realizado')
+                  window.location.replace('/login')
+              }
+          })
+  })
 }
 
 const div = document.getElementById("container") ?? null;

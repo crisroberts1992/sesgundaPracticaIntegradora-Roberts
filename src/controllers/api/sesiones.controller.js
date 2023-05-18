@@ -3,7 +3,7 @@ import { criptografiador } from '../../utils/criptografia.js'
 
 export async function postSesionesController(req, res, next) {
     const credenciales = req.body
-
+    console.log(credenciales)
     try {
         const usuario = await usuariosManager.obtenerSegunEmail(credenciales.email)
         if (!criptografiador.comparar(credenciales.password, usuario.password)) {

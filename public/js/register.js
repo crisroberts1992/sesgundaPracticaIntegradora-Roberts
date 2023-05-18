@@ -26,17 +26,41 @@ if (formRegister instanceof HTMLFormElement) {
         password: input_password.value,
       }
 
-      const usuarioCreado = await fetch('/api/usuarios', {
+      const usuarioCreado = await fetch('/api/users', {
         method: 'POST',
             body: JSON.stringify(datosUsuario),
             headers: {
                 'Content-Type': 'application/json'
         },
       })
-      if (response.status === 201) {
-        window.location.replace('/home')
+      if (usuarioCreado.status === 201) {
+        window.location.replace('/')
     }
       console.log(usuarioCreado)
     }
   })
 }
+//
+/*const formRegister = document.querySelector('#formRegister')
+
+if (formRegister instanceof HTMLFormElement) {
+  formRegister.addEventListener('submit', event => {
+      event.preventDefault()
+      const formData = new FormData(formRegister)
+      const data = {}
+      formData.forEach((value, key) => (data[key] = value))
+
+      fetch('/api/users', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+              "Content-Type": "application/json"
+          }
+      })
+          .then(result => {
+              if (result.status === 201) {
+                  window.location.replace('/')
+              }
+          })
+  })
+}*/

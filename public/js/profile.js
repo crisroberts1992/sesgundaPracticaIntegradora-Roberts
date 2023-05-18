@@ -1,10 +1,10 @@
-const formLogout = document.querySelector('#formLogout')
+/*const formLogout = document.querySelector('#formLogout')
 
 if (formLogout instanceof HTMLFormElement) {
   formLogout.addEventListener('submit', async event => {
     event.preventDefault()
 
-    const { status } = await fetch('/api/sesiones', {
+    const { status } = await fetch('/api/sessions', {
       method: 'DELETE'
     })
 
@@ -16,3 +16,4 @@ if (formLogout instanceof HTMLFormElement) {
 
   })
 }
+*/

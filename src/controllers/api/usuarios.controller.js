@@ -4,7 +4,7 @@ import { criptografiador } from '../../utils/criptografia.js'
 
 export async function postUsuariosController(req, res, next) {
     const datosUsuario = req.body
-
+    console.log(datosUsuario)
     try {
         datosUsuario.password = criptografiador.hashear(datosUsuario.password)
         const usuario = new User(datosUsuario)
@@ -13,7 +13,7 @@ export async function postUsuariosController(req, res, next) {
         const token = criptografiador.generarToken(usuarioGuardado)
         res.cookie('authToken', token, { httpOnly: true, signed: true, maxAge: 1000 * 60 * 60 * 24 })
 
-        req['io'].sockets.emit('users', await usuariosManager.obtenerTodos())
+        //req['io'].sockets.emit('users', await usuariosManager.obtenerTodos())
 
         res.status(201).json(usuarioGuardado)
     } catch (error) {
