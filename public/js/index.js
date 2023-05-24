@@ -14,7 +14,7 @@ if (logoutForm instanceof HTMLFormElement) {
       })
           .then(result => {
               if (result.status === 204) {
-                console.log('logout realizado')
+                //console.log('logout realizado')
                   window.location.replace('/login')
               }
           })
